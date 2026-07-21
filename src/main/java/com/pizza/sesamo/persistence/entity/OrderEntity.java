@@ -26,7 +26,7 @@ public class OrderEntity {
     @Column(nullable = false, columnDefinition = "CHAR(1)")
     private String method;
 
-    @Column(name = "addionnal_notes", length = 200)
+    @Column(name = "additional_notes", length = 200)
     private String additionalNotes;
 
     @OneToOne
