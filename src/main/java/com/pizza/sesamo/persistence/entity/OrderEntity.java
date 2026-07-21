@@ -1,6 +1,7 @@
 package com.pizza.sesamo.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonPropertyOrder({
+        "idOrder",
+        "idCustomer",
+        "date",
+        "method",
+        "total",
+        "additionalNotes",
+        "items"
+})
 public class OrderEntity {
 
     @Id

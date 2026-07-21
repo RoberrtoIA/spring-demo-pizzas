@@ -1,5 +1,6 @@
 package com.pizza.sesamo.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonPropertyOrder({
+        "idPizza",
+        "name",
+        "price",
+        "available",
+        "vegan",
+        "vegetarian",
+        "description"
+})
 public class PizzaEntity {
 
     @Id
