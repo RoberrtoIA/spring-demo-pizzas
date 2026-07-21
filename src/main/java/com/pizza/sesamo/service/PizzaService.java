@@ -23,7 +23,27 @@ public class PizzaService {
         return this.pizzaRepository.findAll();
     }
 
+    public List<PizzaEntity> getAvailable() {
+        return this.pizzaRepository.findAllByAvailableTrueOrderByPrice();
+    }
+
+    public PizzaEntity getByName(String pizzaName) {
+        return this.pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(pizzaName);
+    }
+
     public PizzaEntity get(int idPizza) {
         return this.pizzaRepository.findById(idPizza).orElse(null);
+    }
+
+    public PizzaEntity save(PizzaEntity pizzaEntity) {
+        return this.pizzaRepository.save(pizzaEntity);
+    }
+
+    public void delete(int idPizza) {
+        this.pizzaRepository.deleteById(idPizza);
+    }
+
+    public boolean exists(int idPizza) {
+        return this.pizzaRepository.existsById(idPizza);
     }
 }
