@@ -2,6 +2,7 @@ package com.pizza.sesamo.web.controller;
 
 import com.pizza.sesamo.persistence.entity.PizzaEntity;
 import com.pizza.sesamo.service.PizzaService;
+import com.pizza.sesamo.service.dto.UpdatePizzaPriceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -78,6 +79,16 @@ public class PizzaController {
         }
 
         return ResponseEntity.ok(this.pizzaService.save(pizzaEntity));
+    }
+
+    @PutMapping("/price")
+    public ResponseEntity<Void> updatePrice(@RequestBody UpdatePizzaPriceDto  updatePizzaPriceDto) {
+        if (this.pizzaService.exists(updatePizzaPriceDto.getPizzaId())) {
+            this.pizzaService.updatePrice(updatePizzaPriceDto);
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/{idPizza}")
