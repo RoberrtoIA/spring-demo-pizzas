@@ -2,6 +2,7 @@ package com.pizza.sesamo.service;
 
 import com.pizza.sesamo.persistence.entity.OrderEntity;
 import com.pizza.sesamo.persistence.entity.PizzaEntity;
+import com.pizza.sesamo.persistence.projection.OrderSummary;
 import com.pizza.sesamo.persistence.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,13 @@ public class OrderService {
     public List<OrderEntity> getOutsideOrders() {
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.orderRepository.findAllByMethodIn(methods);
+    }
+
+    public List<OrderEntity> getCustomerOrders(String idCustomer) {
+        return this.orderRepository.findCustomerOrders(idCustomer);
+    }
+
+    public OrderSummary getSummary(int OrderId) {
+        return this.orderRepository.findSummary(OrderId);
     }
 }
