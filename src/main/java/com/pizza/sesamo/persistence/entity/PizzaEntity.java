@@ -1,13 +1,19 @@
 package com.pizza.sesamo.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pizza.sesamo.persistence.audit.AuditPizzaListener;
+import com.pizza.sesamo.persistence.audit.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "pizza")
+@EntityListeners({AuditingEntityListener.class, AuditPizzaListener.class})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +26,7 @@ import lombok.Setter;
         "vegetarian",
         "description"
 })
-public class PizzaEntity {
+public class PizzaEntity extends AuditableEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,5 +51,27 @@ public class PizzaEntity {
     @Column(columnDefinition = "TINYINT", nullable = false)
     private Boolean available;
 
+//    @Column(name = "created_date")
+//    @CreatedDate
+//    @JsonIgnore
+//    private LocalDateTime createdDate;
+//
+//    @Column(name = "modified_date")
+//    @LastModifiedDate
+//    @JsonIgnore
+//    private LocalDateTime modifiedDate;
 
+
+    @Override
+    public String toString() {
+        return "PizzaEntity{" +
+                "idPizza=" + idPizza +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", vegetarian=" + vegetarian +
+                ", vegan=" + vegan +
+                ", available=" + available +
+                '}';
+    }
 }
