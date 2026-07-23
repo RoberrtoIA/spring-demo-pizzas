@@ -35,22 +35,22 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    public UserDetailsService memoryUser() {
-        UserDetails user = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails customer = User.builder()
-                .username("customer")
-                .password(passwordEncoder().encode("customer123"))
-                .roles("CUSTOMER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, customer);
-    }
+//    @Bean
+//    public UserDetailsService memoryUser() {
+//        UserDetails user = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails customer = User.builder()
+//                .username("customer")
+//                .password(passwordEncoder().encode("customer123"))
+//                .roles("CUSTOMER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user, customer);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
